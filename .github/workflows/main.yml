@@ -15,8 +15,6 @@ jobs:
           java-version: '8'
           mvn-toolchain-id: 'JavaSE-1.8'
       - shell: bash
-        env: # Or as an environment variable
-          APP_PARAMETERS: "-Daws.region=eu-west-1 -Dgoogle.maps.authenticationparams=${{ secrets.GOOGLE_MAPS_AUTHENTICATIONPARAMS }} -Daws.s3.test.s3AccessId=${{ secrets.AWS_S3_TEST_S3ACCESSID }} -Daws.s3.test.s3AccessKey=${{ secrets.AWS_S3_TEST_S3ACCESSKEY }}"
         run: |
           mvn --batch-mode clean install
       - name: Collect Test Reports
@@ -34,8 +32,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: gwt-2.11.0
-          release_name: 2.11.0
+          tag_name: gwt-${{ github.ref }}
+          release_name: ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Set M2_DIR env variable
@@ -47,8 +45,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ${{ env.M2_DIR }}/repository/org/codehaus/mojo/gwt-maven-plugin/2.11.0/gwt-maven-plugin-2.11.0.jar
-          asset_name: gwt-maven-plugin-2.11.0.jar
+          asset_path: ${{ env.M2_DIR }}/repository/org/codehaus/mojo/gwt-maven-plugin/${{ github.ref }}/gwt-maven-plugin-${{ github.ref }}.jar
+          asset_name: gwt-maven-plugin-${{ github.ref }}.jar
           asset_content_type: application/java-archive
       - name: Upload pom.xml
         id: upload-release-asset-pom-xml
@@ -57,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ${{ env.M2_DIR }}/repository/org/codehaus/mojo/gwt-maven-plugin/2.11.0/gwt-maven-plugin-2.11.0.pom
-          asset_name: gwt-maven-plugin-2.11.0.pom
+          asset_path: ${{ env.M2_DIR }}/repository/org/codehaus/mojo/gwt-maven-plugin/${{ github.ref }}/gwt-maven-plugin-${{ github.ref }}.pom
+          asset_name: gwt-maven-plugin-${{ github.ref }}.pom
           asset_content_type: application/xml
