@@ -8,12 +8,12 @@ jobs:
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
-      - name: Install JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '8'
-          mvn-toolchain-id: 'JavaSE-1.8'
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
       - shell: bash
         run: |
           mvn --batch-mode clean install
