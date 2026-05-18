@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/gwt-maven-plugin-forward-serialization-rpc)](https://api.reuse.software/info/github.com/SAP/gwt-maven-plugin-forward-serialization-rpc)
+
 The documentation for **Mojo's Maven Plugin for GWT** is here: https://gwt-maven-plugin.github.io/gwt-maven-plugin/
 
 This fork is intended to be used in conjunction with the fork at https://github.com/SAP/gwt-forward-serialization-rpc and
