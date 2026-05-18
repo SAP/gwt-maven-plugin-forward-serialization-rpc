@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/gwt-maven-plugin-forward-serialization-rpc)](https://api.reuse.software/info/github.com/SAP/gwt-maven-plugin-forward-serialization-rpc)
+
 The documentation for **Mojo's Maven Plugin for GWT** is here: https://gwt-maven-plugin.github.io/gwt-maven-plugin/
 
 **NOTICE** There is a [new plugin][ng] ([archetypes][archetype] and [eclipse integration][eclipse]), a fresh start 
