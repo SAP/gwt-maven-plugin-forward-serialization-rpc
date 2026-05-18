@@ -4,6 +4,10 @@ on:
   - workflow_dispatch
 jobs:
   build:
+    permissions:
+      contents: write
+      checks: write
+      actions: read
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository to the runner
